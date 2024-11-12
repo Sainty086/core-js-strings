@@ -116,8 +116,8 @@ function removeLeadingWhitespaces(value) {
  *   removeTrailingWhitespaces('cat ') => 'cat'
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
-function removeTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeTrailingWhitespaces(value) {
+  return value.trimEnd();
 }
 
 /**
@@ -281,8 +281,12 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  let strAlph = str;
+  strAlph = strAlph.split('');
+  strAlph = strAlph.sort();
+  strAlph = strAlph.join('');
+  return strAlph;
 }
 
 /**
@@ -297,8 +301,8 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
 
 /**
@@ -315,8 +319,15 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  if (str === undefined || Number.isNaN(str) || str === null) {
+    return 0;
+  }
+  const vowCount = str.match(/[aeouiy]/gi);
+  if (vowCount === null) {
+    return 0;
+  }
+  return vowCount.length;
 }
 
 /**
@@ -332,8 +343,18 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let fStr = str.replaceAll(' ', '');
+  fStr = fStr.toLowerCase();
+  fStr = fStr.replaceAll(/[.,!@#$%^&*()~`;:'"?]/g, '');
+  let endPos = fStr.length - 1;
+  for (let i = 0; i <= endPos; i += 1) {
+    if (fStr.charAt(i) !== fStr.charAt(endPos)) {
+      return false;
+    }
+    endPos -= 1;
+  }
+  return true;
 }
 
 /**
